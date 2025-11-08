@@ -1,0 +1,51 @@
+@Root_URL = http://localhost:5282
+
+GET {{Root_URL }}/weatherforecast/
+Accept: application/json
+
+###
+GET {{Root_URL }}/api/authors/
+Accept: application/json
+
+###
+GET {{Root_URL }}/api/authors/3
+Accept: application/json
+
+###
+POST {{Root_URL }}/api/authors
+Content-Type: application/json
+{
+  "Name": "Jane Austen",
+  "Biography": "Jane Austen was an English novelist known primarily for her six major novels, including 'Pride and Prejudice' and 'Sense and Sensibility'."
+}
+
+###
+DELETE {{Root_URL }}/api/authors/2
+
+###
+PUT {{Root_URL}}/api/authors/2
+Content-Type: 
+{
+  "id": 2,
+  "name": "J.K",
+  "biography": "Romancière britannique, créatrice de la saga Harry Potter.",
+  "books": [
+    {
+      "id": 2,
+      "title": "Harry Potter à l'école des sorciers",
+      "description": "Premier tome de la saga Harry Potter.",
+      "publishedDate": "1997-06-26T00:00:00",
+      "status": 0
+    }
+  ]
+}
+
+
+###
+GET {{Root_URL }}/api/authors/1/books
+Accept: application/json
+
+
+
+
+
