@@ -73,6 +73,37 @@
   },
   {
     "ContainingType": "Jadev.Library.Managment.Controllers.AuthorsController",
+    "Method": "AddBookToAuthor",
+    "RelativePath": "api/authors/{authorId}/books",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "authorId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "dto",
+        "Type": "Jadev.Library.Managment.DTOs.BookReqDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "Jadev.Library.Managment.Dtos.BookResDTO",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "Jadev.Library.Managment.Controllers.AuthorsController",
     "Method": "GetByIdAsync",
     "RelativePath": "api/authors/{id}",
     "HttpMethod": "GET",

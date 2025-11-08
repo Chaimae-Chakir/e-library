@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Jadev.Library.Managment")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b5bf7e6a6330e6d3796b37969d293e63588dbe50")]
 [assembly: System.Reflection.AssemblyProductAttribute("Jadev.Library.Managment")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Jadev.Library.Managment")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

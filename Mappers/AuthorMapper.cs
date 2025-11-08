@@ -1,4 +1,5 @@
 ﻿using Jadev.Library.Managment.Dtos;
+using Jadev.Library.Managment.DTOs;
 using Jadev.Library.Managment.Models;
 
 namespace Jadev.Library.Managment.Mappers
@@ -40,7 +41,17 @@ namespace Jadev.Library.Managment.Mappers
                 Title = book.Title,
                 Description = book.Description,
                 PublishedDate = book.PublishedDate,
-                Status = book.Status,
+                Status = book.Status.ToString(),
+            };
+        }
+
+        public static Book MapToBook(BookReqDTO bookReqDTO)
+        {
+            return new Book
+            {
+                Title = bookReqDTO.Title,
+                Description = bookReqDTO.Description,
+                PublishedDate = bookReqDTO.PublishedDate
             };
         }
     }

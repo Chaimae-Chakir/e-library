@@ -8,6 +8,6 @@ namespace Jadev.Library.Managment.Dtos
         public string Title { get; set; } = null!;
         public string Description { get; set; } = null!;
         public DateTime PublishedDate { get; set; }
-        public BookStatus Status { get; set; }
+        public string Status { get; set; }
     }
 }

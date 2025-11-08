@@ -1,5 +1,5 @@
 ﻿using Jadev.Library.Managment.Data;
-using Jadev.Library.Managment.Exceptions;
+using Jadev.Library.Managment.enums;
 using Jadev.Library.Managment.Models;
 using Microsoft.EntityFrameworkCore;
 
@@ -9,16 +9,16 @@ namespace Jadev.Library.Managment.Repositories
     {
         private readonly LibraryContext _context;
 
-       public AuthorRepository(LibraryContext context) =>_context = context;
+        public AuthorRepository(LibraryContext context) => _context = context;
 
         public async Task<IEnumerable<Author>> GetAll() => await _context.Authors
             .Include(a => a.Books)
             .ToListAsync();
 
-        public async Task<Author> GetAuthorById(int id) => await _context.Authors
+        public async Task<Author?> GetAuthorById(int id) => await _context.Authors
             .Include(a => a.Books)
             .FirstOrDefaultAsync(a => a.Id == id);
-        
+
         public async Task<Author> Add(Author author)
         {
             _context.Authors.Add(author);
@@ -26,17 +26,19 @@ namespace Jadev.Library.Managment.Repositories
             return author;
         }
 
-        public async Task<Author> Update(int id, Author author)
+        public async Task<Author?> Update(int id, Author author)
         {
-            //_context.Entry(author).State = EntityState.Modified;
-            //await _context.SaveChangesAsync();
-            var existingAuthor = await _context.Authors.Include(a=>a.Books).FirstOrDefaultAsync(a=>a.Id == id);
+            var existingAuthor = await _context.Authors
+                .Include(a => a.Books)
+                .FirstOrDefaultAsync(a => a.Id == id);
+
             if (existingAuthor == null)
-                throw new NotFoundException("the author doesn't exist");
-         
+                return null; 
+
             existingAuthor.Name = author.Name;
             existingAuthor.Biography = author.Biography;
-            if (existingAuthor.Books != null && author.Books.Any())
+
+            if (existingAuthor.Books != null && author.Books != null && author.Books.Any())
             {
                 _context.Books.RemoveRange(existingAuthor.Books);
                 existingAuthor.Books = author.Books.Select(b => new Book
@@ -44,19 +46,21 @@ namespace Jadev.Library.Managment.Repositories
                     Title = b.Title,
                     Description = b.Description,
                     PublishedDate = b.PublishedDate,
-                    AuthorId = b.AuthorId,
-                    Status = b.Status,
-                    Author = b.Author
+                    AuthorId = existingAuthor.Id, 
+                    Status = b.Status
                 }).ToList();
             }
+
             await _context.SaveChangesAsync();
             return existingAuthor;
         }
+
         public async Task<bool> Delete(int id)
         {
             var author = await _context.Authors.FindAsync(id);
             if (author == null)
-                throw new NotFoundException("Author doesn't exists");
+                return false; 
+
             _context.Remove(author);
             await _context.SaveChangesAsync();
             return true;
@@ -66,6 +70,24 @@ namespace Jadev.Library.Managment.Repositories
         {
             return await _context.Authors
                 .AnyAsync(a => a.Name.ToLower() == name.ToLower());
+        }
+
+        public async Task<Book?> AddBookToAuthorById(int authorId, Book book)
+        {
+            var author = await _context.Authors
+                .Include(a => a.Books)
+                .FirstOrDefaultAsync(a => a.Id == authorId);
+
+            if (author == null)
+                return null; 
+
+            book.AuthorId = authorId;
+            book.Status = BookStatus.Available;
+            //author.Books ??= new List<Book>();
+            author.Books.Add(book);
+
+            await _context.SaveChangesAsync();
+            return book;
         }
     }
 }

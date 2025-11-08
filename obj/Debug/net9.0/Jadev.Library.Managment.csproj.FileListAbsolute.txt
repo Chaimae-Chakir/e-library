@@ -161,3 +161,4 @@ C:\Users\HP\source\repos\Jadev.Library.Managment\Jadev.Library.Managment\obj\Deb
 C:\Users\HP\source\repos\Jadev.Library.Managment\Jadev.Library.Managment\obj\Debug\net9.0\Jadev.Library.Managment.genruntimeconfig.cache
 C:\Users\HP\source\repos\Jadev.Library.Managment\Jadev.Library.Managment\obj\Debug\net9.0\ref\Jadev.Library.Managment.dll
 C:\Users\HP\source\repos\Jadev.Library.Managment\Jadev.Library.Managment\obj\Debug\net9.0\staticwebassets.upToDateCheck.txt
+C:\Users\HP\source\repos\Jadev.Library.Managment\Jadev.Library.Managment\obj\Debug\net9.0\Jadev.Library.Managment.sourcelink.json

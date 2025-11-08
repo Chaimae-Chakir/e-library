@@ -8,7 +8,7 @@ GET {{Root_URL }}/api/authors/
 Accept: application/json
 
 ###
-GET {{Root_URL }}/api/authors/3
+GET {{Root_URL }}/api/authors/8
 Accept: application/json
 
 ###
@@ -24,7 +24,7 @@ DELETE {{Root_URL }}/api/authors/2
 
 ###
 PUT {{Root_URL}}/api/authors/2
-Content-Type: 
+Content-Type: application/json
 {
   "id": 2,
   "name": "J.K",
@@ -44,6 +44,18 @@ Content-Type:
 ###
 GET {{Root_URL }}/api/authors/1/books
 Accept: application/json
+
+###
+POST {{Root_URL }}/api/authors/1/books
+Content-Type: application/json
+{
+  "title": "La Ferme des animaux",
+  "description": "Une fable politique satirique dénonçant les dérives totalitaires à travers une révolte d'animaux dans une ferme.",
+  "publishedDate": "1945-08-17T00:00:00"
+}
+
+
+
 
 
 
