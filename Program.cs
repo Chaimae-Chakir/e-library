@@ -1,3 +1,4 @@
+using Jadev.Library.Managment.Middleware;
 using Microsoft.EntityFrameworkCore;
 using System.Text.Json.Serialization;
 
@@ -10,6 +11,7 @@ namespace Jadev.Library.Managment
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
+            builder.Services.AddExceptionHandler<GlobalExceptionHandler>();
 
             builder.Services.AddControllers();
             // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
@@ -22,6 +24,7 @@ namespace Jadev.Library.Managment
             builder.Services.AddScoped<Repositories.IAuthorRepository, Repositories.AuthorRepository>();
             builder.Services.AddScoped<Repositories.IBookRepository, Repositories.BookRepository>();
             var app = builder.Build();
+            app.UseExceptionHandler(_ => { });
 
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
